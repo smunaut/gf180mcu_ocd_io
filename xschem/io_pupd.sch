@@ -1,4 +1,4 @@
-v {xschem version=3.4.6 file_version=1.2
+v {xschem version=3.4.8RC file_version=1.3
 * Copyright 2023 David Mitchell Bailey
 * 
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,24 +17,21 @@ G {}
 K {}
 V {}
 S {}
+F {}
 E {}
 N -110 890 -20 890 { lab=#net1}
 N -60 710 -60 990 { lab=PD}
 N -110 990 -60 990 { lab=PD}
 N -20 770 40 770 { lab=#net2}
-N 820 730 820 970 { lab=#net3}
-N 860 700 990 700 { lab=#net4}
+N 860 700 990 700 { lab=#net3}
 N 990 1180 1100 1180 { lab=PAD}
 N 950 850 970 850 { lab=DVDD}
 N -240 990 -110 990 { lab=PD}
-N 970 730 970 850 { lab=DVDD}
-N 670 590 670 670 { lab=#net5}
-N 670 670 820 670 { lab=#net5}
-N 970 850 970 1150 { lab=DVDD}
+N 670 590 670 670 { lab=#net4}
+N 670 670 820 670 { lab=#net4}
 N -110 990 -110 1060 { lab=PD}
-N 20 710 20 1060 { lab=#net6}
+N 20 710 20 1060 { lab=#net5}
 N 860 640 860 670 { lab=DVDD}
-N 860 730 860 760 { lab=DVSS}
 N 40 770 40 950 { lab=#net2}
 N -60 990 90 990 {lab=PD}
 N 40 950 90 950 {lab=#net2}
@@ -47,6 +44,8 @@ N -20 630 -20 650 {lab=PU}
 N -20 630 60 630 {lab=PU}
 N 60 630 60 690 {lab=PU}
 N 60 690 70 690 {lab=PU}
+N 990 700 990 820 {lab=#net3}
+N 990 880 990 1180 {lab=PAD}
 C {io_xfer_1.sym} -20 670 3 1 {name=x16}
 C {io_xfer_1.sym} -20 870 1 1 {name=x17}
 C {devices/ipin.sym} -260 630 0 0 {name=p6 lab=PU}
@@ -61,24 +60,10 @@ C {io_inv_2.sym} 690 590 0 0 {name=x24}
 C {io_inv_1.sym} 240 970 0 0 {name=x25}
 C {io_inv_2.sym} 580 970 0 0 {name=x26}
 C {io_inv_2.sym} 710 970 0 0 {name=x27}
-C {symbols/nfet_06v0.sym} 840 730 0 0 {name=I202
-L=0.70u
-W=1.5u
-nf=1
-m=1
-ad="'int((nf+1)/2) * W/nf * 0.18u'"
-pd="'2*int((nf+1)/2) * (W/nf + 0.18u)'"
-as="'int((nf+2)/2) * W/nf * 0.18u'"
-ps="'2*int((nf+2)/2) * (W/nf + 0.18u)'"
-nrd="'0.18u / W'" nrs="'0.18u / W'"
-sa=0 sb=0 sd=0
-model=nfet_06v0
-spiceprefix=X
-}
 C {symbols/pfet_06v0.sym} 840 670 0 0 {name=I203
-L=0.70u
-W=3u
-nf=1
+L=0.55u
+W=16u
+nf=2
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
 pd="'2*int((nf+1)/2) * (W/nf + 0.18u)'"
@@ -89,54 +74,12 @@ sa=0 sb=0 sd=0
 model=pfet_06v0
 spiceprefix=X
 }
-C {symbols/ppolyf_u.sym} 990 730 0 0 {name=R201
-W=0.8e-6
-L=35.7e-6
-model=ppolyf_u
-spiceprefix=X
-m=1}
-C {symbols/ppolyf_u.sym} 990 790 0 0 {name=R200
-W=0.8e-6
-L=35.7e-6
-model=ppolyf_u
-spiceprefix=X
-m=1}
 C {symbols/ppolyf_u.sym} 990 850 0 0 {name=R199
 W=0.8e-6
-L=35.7e-6
+L=12.5e-6
 model=ppolyf_u
 spiceprefix=X
-m=1}
-C {symbols/ppolyf_u.sym} 990 910 0 0 {name=R198
-W=0.8e-6
-L=35.7e-6
-model=ppolyf_u
-spiceprefix=X
-m=1}
-C {symbols/ppolyf_u.sym} 990 970 0 0 {name=R197
-W=0.8e-6
-L=35.7e-6
-model=ppolyf_u
-spiceprefix=X
-m=1}
-C {symbols/ppolyf_u.sym} 990 1030 0 0 {name=R196
-W=0.8e-6
-L=35.7e-6
-model=ppolyf_u
-spiceprefix=X
-m=1}
-C {symbols/ppolyf_u.sym} 990 1090 0 0 {name=R195
-W=0.8e-6
-L=35.7e-6
-model=ppolyf_u
-spiceprefix=X
-m=1}
-C {symbols/ppolyf_u.sym} 990 1150 0 0 {name=R194
-W=0.8e-6
-L=23e-6
-model=ppolyf_u
-spiceprefix=X
-m=1}
+m=7}
 C {devices/opin.sym} 1100 1180 0 0 {name=p8 lab=PAD}
 C {devices/noconn.sym} 800 590 0 1 {name=l13}
 C {gnd.sym} 690 630 0 0 {name=l1 lab=DVSS}
@@ -161,7 +104,6 @@ C {gnd.sym} -90 1100 0 0 {name=l20 lab=VSS}
 C {vdd.sym} -90 1020 0 0 {name=l21 lab=VDD}
 C {devices/iopin.sym} -240 510 0 0 {name=p1 lab=VDD}
 C {devices/iopin.sym} -240 530 0 0 {name=p2 lab=VSS}
-C {gnd.sym} 860 760 0 0 {name=l22 lab=DVSS}
 C {vdd.sym} 860 640 0 0 {name=l23 lab=DVDD}
 C {vdd.sym} 950 850 0 1 {name=l28 lab=DVDD}
 C {vdd.sym} -40 680 0 1 {name=l24 lab=VDD}
@@ -180,3 +122,4 @@ C {gnd.sym} 460 740 0 0 {name=l33 lab=DVSS}
 C {gnd.sym} 410 740 0 0 {name=l34 lab=VSS}
 C {gnd.sym} 480 1040 0 0 {name=l35 lab=DVSS}
 C {gnd.sym} 430 1040 0 0 {name=l36 lab=VSS}
+C {devices/noconn.sym} 820 970 0 1 {name=l22}
